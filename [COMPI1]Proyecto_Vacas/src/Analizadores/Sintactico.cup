@@ -14,6 +14,7 @@ import arbol.instrucciones.Imprimir;
 import arbol.aritmetica.*;
 import arbol.instrucciones.Incre;
 import arbol.instrucciones.Decre;
+import arbol.Logicas.*;
 import java.util.LinkedList;
 
 
@@ -166,11 +167,11 @@ E ::=
         | id:a menosmenos {: RESULT = new decremento(aleft, aright, a); :}
         
         | E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}
-        | E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
-        | E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
-        | E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
-        | E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
-        | E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}     
+        //| E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
+        //| E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
+        //| E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
+        //| E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
+        //| E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}     
         
 
 ;

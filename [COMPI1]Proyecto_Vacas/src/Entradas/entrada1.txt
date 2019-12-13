@@ -47,3 +47,8 @@ println(var12);
 
 double var13 = 'c'%'a'; 
 println(var13);
+
+boolean var14 = var12>var13;
+
+
+println (var14);

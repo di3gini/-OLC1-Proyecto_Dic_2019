@@ -25,7 +25,7 @@ public class COMPIPrueba_Flex {
     public static void main(String[] args) {
         // TODO code application logic here
         lista_errores = new LinkedList<>();
-        interpretar("C:\\Users\\di3go\\Documents\\NetBeansProjects\\[COMPI1]Proyecto_Vacas\\src\\Entradas\\entrada1.txt");
+        interpretar("C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[COMPI1]Proyecto_Vacas\\src\\Entradas\\entrada1.txt");
         
     }
     
@@ -34,7 +34,7 @@ public class COMPIPrueba_Flex {
 //        Instruccion bloque;
         AST arbol;
         try {
-            Reader targetReader = new StringReader(new String(Files.readAllBytes(Paths.get("C:\\Users\\di3go\\Documents\\NetBeansProjects\\[COMPI1]Proyecto_Vacas\\src\\Entradas\\entrada1.txt")), "UTF-8"));
+            Reader targetReader = new StringReader(new String(Files.readAllBytes(Paths.get(path)), "UTF-8"));
             analizadores.Lexico scan = new analizadores.Lexico(targetReader);
             pars = new analizadores.Sintactico(scan);
             pars.parse();

@@ -7,6 +7,8 @@ package arbol.Logicas;
 
 import arbol.Expresion;
 import arbol.entorno.Entorno;
+import arbol.entorno.Tipo;
+import arbol.expresiones.Literal;
 
 /**
  *
@@ -22,6 +24,23 @@ public class Mayor extends Expresion{
     }
     @Override
     public Expresion getValor(Entorno ent){
+        Expresion valor1 = hijo1.getValor(ent);
+        Expresion valor2 = hijo2.getValor(ent);
+        
+        switch (valor1.tipo.tipo){
+            case entero:
+                switch (valor2.tipo.tipo){
+                    case entero:
+                        if(Integer.parseInt(valor1.valor.toString()) > Integer.parseInt(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                        
+                }
+        }
         return null;
     }
     
