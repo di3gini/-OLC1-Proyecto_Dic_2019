@@ -152,7 +152,7 @@ E ::=
         | doble:a {: RESULT = new Literal(new Tipo(Tipo.EnumTipo.doble), a); :}
         | cadena:a {: RESULT = new Literal(new Tipo(Tipo.EnumTipo.cadena), a.replace("\"","")); :}
         //| cadena:a {: RESULT = new Literal(new Tipo(Tipo.EnumTipo.cadena), a); :}
-        
+        | rnull {: RESULT = new Literal(new Tipo(Tipo.EnumTipo.nulo)); :}
 
         | id:a {: RESULT = new Id(a, aleft,aright); :}
         
@@ -170,8 +170,8 @@ E ::=
         | E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
         | E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
         | E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
-        //| E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
-        //| E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}     
+        | E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
+        | E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}     
         
 
 ;

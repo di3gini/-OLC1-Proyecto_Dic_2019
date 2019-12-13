@@ -54,3 +54,10 @@ println (var13>var11);
 println (var13<var11);
 println (var13>=var11);
 println (var13<=var11);
+
+println("prueba de funciones igualigual y diferente que");
+println("");
+println(var13==var11);
+println(var13==var13);
+println(var11!=var13);
+println(var11!=var11);

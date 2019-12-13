@@ -25,6 +25,6 @@ public class Tipo {
     }    
     
     public enum EnumTipo{
-        entero, caracter, booleano, doble, cadena, error;
+        entero, caracter, booleano, doble, cadena, nulo, error;
     }
 }

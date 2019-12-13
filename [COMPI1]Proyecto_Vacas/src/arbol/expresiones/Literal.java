@@ -17,6 +17,11 @@ public class Literal extends Expresion{
         this.valor = valor;
     }
     
+    public Literal(Tipo tipo){
+        this.tipo = tipo;
+        this.valor = null;
+    }
+    
     @Override
     public Expresion getValor(Entorno ent){
         return new Literal(tipo, valor);
