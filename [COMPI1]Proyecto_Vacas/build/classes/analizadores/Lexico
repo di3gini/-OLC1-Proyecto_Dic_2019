@@ -71,10 +71,10 @@ BLANCOS=[ \r\t]+
 <YYINITIAL> "==" {return new Symbol(sym.igualigual,yyline,yychar, yytext());}
 <YYINITIAL> "!=" {return new Symbol(sym.diferenteque,yyline,yychar, yytext());}
 
-<YYINITIAL> "||" {return new Symbol(sym.or,yyline,yychar, yytext());}
-<YYINITIAL> "&&" {return new Symbol(sym.and,yyline,yychar, yytext());}
-<YYINITIAL> "^" {return new Symbol(sym.xor,yyline,yychar, yytext());}
-<YYINITIAL> "!" {return new Symbol(sym.not,yyline,yychar, yytext());}
+<YYINITIAL> "||" {return new Symbol(sym.ror,yyline,yychar, yytext());}
+<YYINITIAL> "&&" {return new Symbol(sym.rand,yyline,yychar, yytext());}
+<YYINITIAL> "^" {return new Symbol(sym.rxor,yyline,yychar, yytext());}
+<YYINITIAL> "!" {return new Symbol(sym.rnot,yyline,yychar, yytext());}
 
 <YYINITIAL> "," {return new Symbol(sym.coma,yyline,yychar, yytext());}
 <YYINITIAL> ";" {return new Symbol(sym.puntoycoma,yyline,yychar, yytext());}

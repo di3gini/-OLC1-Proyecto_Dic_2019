@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arbol.Logicas;
+package arbol.Comparativas;
 
 import arbol.Expresion;
 import arbol.entorno.Entorno;

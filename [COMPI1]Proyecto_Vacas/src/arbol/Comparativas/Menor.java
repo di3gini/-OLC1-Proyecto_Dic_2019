@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arbol.Logicas;
+package arbol.Comparativas;
 
 import arbol.Expresion;
 import arbol.entorno.Entorno;
@@ -14,11 +14,10 @@ import arbol.expresiones.Literal;
  *
  * @author di3go
  */
-public class Igual extends Expresion{
-        
-    Expresion hijo1, hijo2;
+public class Menor extends Expresion{
     
-    public Igual(int linea, int columna, Expresion hijo1, Expresion hijo2){
+    Expresion hijo1, hijo2;
+    public Menor(int linea, int columna, Expresion hijo1, Expresion hijo2){
         this.linea = linea;
         this.columna = columna;
         this.hijo1 = hijo1;
@@ -33,7 +32,7 @@ public class Igual extends Expresion{
             case entero:
                 switch (valor2.tipo.tipo){
                     case entero:
-                        if(Integer.parseInt(valor1.valor.toString()) == Integer.parseInt(valor2.valor.toString())){
+                        if(Integer.parseInt(valor1.valor.toString()) < Integer.parseInt(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -41,7 +40,7 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case doble:
-                        if(Double.parseDouble(valor1.valor.toString()) == Double.parseDouble(valor2.valor.toString())){
+                        if(Double.parseDouble(valor1.valor.toString()) < Double.parseDouble(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -49,7 +48,7 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case caracter:
-                        if(Integer.parseInt(valor1.valor.toString()) == (int) valor2.valor.toString().charAt(0)){
+                        if(Integer.parseInt(valor1.valor.toString()) < (int) valor2.valor.toString().charAt(0)){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -61,7 +60,7 @@ public class Igual extends Expresion{
             case doble:
                 switch (valor2.tipo.tipo){
                     case entero:
-                        if(Double.parseDouble(valor1.valor.toString()) == Double.parseDouble(valor2.valor.toString())){
+                        if(Double.parseDouble(valor1.valor.toString()) < Double.parseDouble(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -69,7 +68,7 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case doble:
-                        if(Double.parseDouble(valor1.valor.toString()) == Double.parseDouble(valor2.valor.toString())){
+                        if(Double.parseDouble(valor1.valor.toString()) < Double.parseDouble(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -77,7 +76,7 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case caracter:
-                        if(Double.parseDouble(valor1.valor.toString()) == (double) valor2.valor.toString().charAt(0)){
+                        if(Double.parseDouble(valor1.valor.toString()) < (double) valor2.valor.toString().charAt(0)){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -88,7 +87,7 @@ public class Igual extends Expresion{
             case caracter:
                 switch (valor2.tipo.tipo){
                     case entero:
-                        if((int) valor1.valor.toString().charAt(0) == Integer.parseInt(valor2.valor.toString())){
+                        if((int) valor2.valor.toString().charAt(0) < Integer.parseInt(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -96,7 +95,7 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case doble:
-                        if((double) valor1.valor.toString().charAt(0) == Double.parseDouble(valor2.valor.toString())){
+                        if((double) valor2.valor.toString().charAt(0) < Double.parseDouble(valor2.valor.toString())){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
@@ -104,23 +103,13 @@ public class Igual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case caracter:
-                        if((double) valor1.valor.toString().charAt(0) == (double) valor2.valor.toString().charAt(0)){
+                        if((double) valor2.valor.toString().charAt(0) < (double) valor2.valor.toString().charAt(0)){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{
                             
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
-                        }
-                }
-            case cadena:
-                switch(valor2.tipo.tipo){
-                    case cadena:
-                        if(valor1.valor.toString() == valor2.valor.toString()){
-                            return new Literal(new Tipo(Tipo.EnumTipo.booleano),true);
-                        }
-                        else{
-                            return new Literal(new Tipo(Tipo.EnumTipo.booleano),false);
-                        }
+                        }    
                 }
         }
         return null;

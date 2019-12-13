@@ -859,11 +859,11 @@ public class Lexico implements java_cup.runtime.Scanner {
             }
           case 103: break;
           case 18: 
-            { return new Symbol(sym.not,yyline,yychar, yytext());
+            { return new Symbol(sym.rnot,yyline,yychar, yytext());
             }
           case 104: break;
           case 19: 
-            { return new Symbol(sym.xor,yyline,yychar, yytext());
+            { return new Symbol(sym.rxor,yyline,yychar, yytext());
             }
           case 105: break;
           case 20: 
@@ -939,11 +939,11 @@ public class Lexico implements java_cup.runtime.Scanner {
             }
           case 123: break;
           case 38: 
-            { return new Symbol(sym.or,yyline,yychar, yytext());
+            { return new Symbol(sym.ror,yyline,yychar, yytext());
             }
           case 124: break;
           case 39: 
-            { return new Symbol(sym.and,yyline,yychar, yytext());
+            { return new Symbol(sym.rand,yyline,yychar, yytext());
             }
           case 125: break;
           case 40: 
