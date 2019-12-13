@@ -38,7 +38,77 @@ public class Mayor extends Expresion{
                             
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
+                    case doble:
+                        if(Double.parseDouble(valor1.valor.toString()) > Double.parseDouble(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                    case caracter:
+                        if(Integer.parseInt(valor1.valor.toString()) > (int) valor2.valor.toString().charAt(0)){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
                         
+                }
+            case doble:
+                switch (valor2.tipo.tipo){
+                    case entero:
+                        if(Double.parseDouble(valor1.valor.toString()) > Double.parseDouble(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                    case doble:
+                        if(Double.parseDouble(valor1.valor.toString()) > Double.parseDouble(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                    case caracter:
+                        if(Double.parseDouble(valor1.valor.toString()) > (double) valor2.valor.toString().charAt(0)){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }    
+                }
+            case caracter:
+                switch (valor2.tipo.tipo){
+                    case entero:
+                        if((int) valor2.valor.toString().charAt(0) > Integer.parseInt(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                    case doble:
+                        if((double) valor2.valor.toString().charAt(0) > Double.parseDouble(valor2.valor.toString())){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }
+                    case caracter:
+                        if((double) valor2.valor.toString().charAt(0) > (double) valor2.valor.toString().charAt(0)){
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
+                        }
+                        else{
+                            
+                            return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
+                        }    
                 }
         }
         return null;
