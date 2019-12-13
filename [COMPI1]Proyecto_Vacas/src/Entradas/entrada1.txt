@@ -50,4 +50,7 @@ println(var13);
 
 
 
-println (var13>var12);
+println (var13>var11);
+println (var13<var11);
+println (var13>=var11);
+println (var13<=var11);
