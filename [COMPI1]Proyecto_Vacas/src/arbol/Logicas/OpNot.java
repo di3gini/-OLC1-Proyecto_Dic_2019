@@ -14,11 +14,11 @@ import arbol.expresiones.Literal;
  *
  * @author di3go
  */
-public class OpAnd extends Expresion{
-    
+public class OpNot extends Expresion{
+        
     Expresion hijo1, hijo2;
     
-    public OpAnd(int linea, int columna, Expresion hijo1, Expresion hijo2){
+    public OpNot(int linea, int columna, Expresion hijo1){
         this.linea = linea;
         this.columna = columna;
         this.hijo1 = hijo1;
@@ -28,16 +28,14 @@ public class OpAnd extends Expresion{
     @Override
     public Expresion getValor(Entorno ent){
         Expresion valor1 = hijo1.getValor(ent);
-        Expresion valor2 = hijo2.getValor(ent);
+        
         
         switch(valor1.tipo.tipo){
             case booleano:
-                switch(valor2.tipo.tipo){
-                    case booleano:
-                        return new Literal(new Tipo(Tipo.EnumTipo.booleano),Boolean.parseBoolean(valor1.valor.toString()) && Boolean.parseBoolean(valor2.valor.toString()));
-                }
+                
+                return new Literal(new Tipo(Tipo.EnumTipo.booleano), !Boolean.parseBoolean(hijo1.valor.toString()));
         }
+        
         return null;
     }
-    
 }

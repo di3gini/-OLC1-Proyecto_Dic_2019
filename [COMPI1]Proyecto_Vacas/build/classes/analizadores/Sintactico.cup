@@ -12,10 +12,10 @@ import arbol.instrucciones.Asignacion;
 import arbol.instrucciones.Declaracion;
 import arbol.instrucciones.Imprimir;
 import arbol.aritmetica.*;
-import arbol.instrucciones.Incre;
-import arbol.instrucciones.Decre;
+import arbol.instrucciones.*;
 import arbol.Logicas.*;
 import arbol.Comparativas.*;
+import arbol.Sentencias.*;
 import java.util.LinkedList;
 
 
@@ -46,13 +46,13 @@ parser code
 terminal String mas,menos,por,division,parizquierdo,parderecho,igual,puntoycoma,llaveizq,llaveder,rint,rdouble,rchar,rboolean,rstring,rclass,coma,rvoid;
 terminal String entero,doble,rtrue,rfalse,cadena,caracter,id,rprintln,rprint,rprinttabla;
 terminal String menorque,mayorque,menorigualque,mayorigualque,igualigual,diferenteque,ror,rand,rxor,rnot,rif,relse,rwhile,rbreak,rcontinue,modulo,rfor,rdo,rswitch,rcase,rdefault,dospuntos,interrogacion,masmas,menosmenos,rpow,rreturn,corizquierdo,corderecho,rnew,rpublic,rprotected,rprivate,rabstract,rstatic,rfinal,rstr,rtoDouble,rtoInt,rtoChar,rextends,punto,rthis,rnull,rimport,
-rgraph,rsuper,rread_file,rwrite_file,rinstanceof,rread;
+rgraph,rsuper,rread_file,rwrite_file,rinstanceof,rread,rgraphent,rgraphdot;
 
 terminal umenos; //Para manejar el - E
 
 non terminal INICIO;
 non terminal LinkedList<Instruccion> L_INSTRUCCIONES;
-non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO;
+non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT;
 non terminal Expresion E;
 non terminal Expresion OP_COMPA;
 non terminal Tipo T;
@@ -100,10 +100,8 @@ INSTRUCCION ::= DECLARACION:a puntoycoma {: RESULT = a; :}
             | IMPRIMIR:a puntoycoma{: RESULT = a; :}
             | INCREMENTO:a puntoycoma{: RESULT = a; :}
             | DECREMENTO:a puntoycoma{: RESULT = a; :}
-            
-            
-            
-
+            | GRAFICAR_DOT:a puntoycoma {: RESULT = a;:}
+            | GRAFICAR_ENT:a puntoycoma {: RESULT = a;:}
 ;
 
 
@@ -140,8 +138,13 @@ DECREMENTO ::= id:a menosmenos {: RESULT = new Decre(a,aright,aleft);:}
 ;
 
 
+GRAFICAR_DOT ::= 
+            rgraphdot parizquierdo E:a coma E:b parderecho {:RESULT = new GrafDot(aright,aleft,a,b);:}
+;
 
-
+GRAFICAR_ENT ::=
+            rgraphent parizquierdo parderecho {:RESULT = new GrafEntornos();:}
+;
 
 
 
@@ -168,7 +171,7 @@ E ::=
         | id:a masmas {: RESULT= new incremento(aleft, aright, a);:}
         | id:a menosmenos {: RESULT = new decremento(aleft, aright, a); :}
         
-        |E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}
+        | E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}
         | E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
         | E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
         | E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
@@ -177,9 +180,9 @@ E ::=
 
 
         | E:a ror E:b {:RESULT = new OpOr(aleft, aright, a, b);:}
-        | E:a rand E:b {:RESULT = new OpOr(aleft, aright, a, b);:}
-        | E:a rxor E:b {:RESULT = new OpOr(aleft, aright, a, b);:}
-        //| not E:a { :RESULT = new OpOr(aleft, aright, a)}
+        | E:a rand E:b {:RESULT = new OpAnd(aleft, aright, a, b);:}
+        | E:a rxor E:b {:RESULT = new OpXor(aleft, aright, a, b);:}
+        | rnot E:a {:RESULT = new OpNot(aleft, aright, a);:}
        
         
         

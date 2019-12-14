@@ -58,7 +58,9 @@ println (var13<=var11);
 println("prueba de OR");
 println("");
 println(var13==var13 || var11==var13);
-println(var13==var13 && var11==var13);
+println(var13==var13 && false);
 println(var13==var13 ^ var11==var13);
+println(!true);
 
-
+Graficar_dot("hola","que tal");
+Graficar_entornos();

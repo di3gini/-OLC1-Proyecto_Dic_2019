@@ -138,6 +138,8 @@ BLANCOS=[ \r\t]+
 <YYINITIAL> "graph" {return new Symbol(sym.rgraph,yyline,yychar, yytext());}
 <YYINITIAL> "read_file" {return new Symbol(sym.rread_file,yyline,yychar, yytext());}
 <YYINITIAL> "write_file" {return new Symbol(sym.rwrite_file,yyline,yychar, yytext());}
+<YYINITIAL> "Graficar_dot" {return new Symbol(sym.rgraphdot,yyline,yychar,yytext());}
+<YYINITIAL> "Graficar_entornos" {return new Symbol(sym.rgraphent,yyline,yychar,yytext());}
 
 <YYINITIAL> "instanceof" {return new Symbol(sym.rinstanceof,yyline,yychar, yytext());}
 <YYINITIAL> "read" {return new Symbol(sym.rread,yyline,yychar, yytext());}
