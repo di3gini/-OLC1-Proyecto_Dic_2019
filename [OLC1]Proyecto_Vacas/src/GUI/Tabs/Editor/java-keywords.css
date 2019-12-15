@@ -1,0 +1,40 @@
+.keyword {
+    -fx-fill: blue;
+    -fx-font-weight: bold;
+}
+.semicolon {
+    -fx-font-weight: bold;
+}
+
+.number{
+    -fx-fill: purple;
+    -fx-font-weight: bold;
+}
+
+.paren {
+    -fx-fill: firebrick;
+    -fx-font-weight: bold;
+}
+.bracket {
+    -fx-fill: green;
+    -fx-font-weight: bold;
+}
+.brace {
+    -fx-fill: teal;
+    -fx-font-weight: bold;
+}
+.string {
+    -fx-fill: orange;
+}
+
+.comment {
+	-fx-fill: gray;
+}
+
+.identifier {
+	-fx-fill:indigo;
+}
+
+.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
