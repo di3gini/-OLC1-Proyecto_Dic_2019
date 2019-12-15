@@ -6,12 +6,45 @@
 package arbol.Sentencias;
 
 import arbol.Instruccion;
+import arbol.entorno.Entorno;
+import arbol.instrucciones.Bloque;
+import java.util.LinkedList;
 
 /**
  *
  * @author di3go
  */
-public class IF{
-    
+public class IF extends Instruccion{
+    LinkedList<Condiciones> listacondi;
+    Bloque bloqueelse;
+
+    public IF(LinkedList<Condiciones> a, Bloque b) {
+        this.listacondi = a;
+        this.bloqueelse = b;
+    }
+
+    public IF(LinkedList<Condiciones> a) {
+        this.listacondi = a;
+        this.bloqueelse = null;
+    }
+
+    @Override
+    public Object ejecutar(Entorno ent) {
+
+        for (Condiciones condicion : listacondi) {
+            condicion.ejecutar(ent);
+
+            if (condicion.ejecutado == true) {
+                return null;
+            }
+
+        }
+        if (bloqueelse != null) {
+            Entorno nuevo_entorno = new Entorno(ent);
+            bloqueelse.ejecutar(nuevo_entorno);
+
+        }
+        return null;
+    }
     
 }

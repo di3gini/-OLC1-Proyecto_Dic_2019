@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/instrucciones/Bloque.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/Analizadores/Sintactico.cup</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/instrucciones/Decre.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/entorno/Entorno.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/Expresion.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/Sentencias/Condiciones.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/GUI/EditorController.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/instrucciones/Declaracion.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/instrucciones/Incre.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/expresiones/Id.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/nodo.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/Analizadores/Sintactico.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/Analizadores/Lexico</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/AST.java</file>
+            <file>file:/C:/Users/di3go/Documents/NetBeansProjects/-OLC1-Proyecto_Dic_2019/%5BOLC1%5DProyecto_Vacas/src/arbol/Sentencias/IF.java</file>
+        </group>
     </open-files>
 </project-private>

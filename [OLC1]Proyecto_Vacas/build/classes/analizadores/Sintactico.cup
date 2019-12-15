@@ -19,6 +19,7 @@ import arbol.Sentencias.*;
 import java.util.LinkedList;
 import javafx.scene.text.Text;
 import GUI.EditorController;
+import arbol.instrucciones.*;
 
 
 parser code 
@@ -57,7 +58,9 @@ terminal umenos; //Para manejar el - E
 
 non terminal INICIO;
 non terminal LinkedList<Instruccion> L_INSTRUCCIONES;
-non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT;
+non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT, SENTENCIA_IF;
+non terminal LinkedList<Condiciones> L_CONDICIONES;
+non terminal Bloque BLOQUE;
 non terminal Expresion E;
 non terminal Expresion OP_COMPA;
 non terminal Tipo T;
@@ -107,15 +110,27 @@ INSTRUCCION ::= DECLARACION:a puntoycoma {: RESULT = a; :}
             | DECREMENTO:a puntoycoma{: RESULT = a; :}
             | GRAFICAR_DOT:a puntoycoma {: RESULT = a;:}
             | GRAFICAR_ENT:a puntoycoma {: RESULT = a;:}
+            | SENTENCIA_IF:a {:RESULT=a;:}
 ;
 
+SENTENCIA_IF ::= L_CONDICIONES:a relse BLOQUE:b {:RESULT=new IF(a,b);:}
+                |L_CONDICIONES:a {:RESULT=new IF(a);:}
+;
 
+BLOQUE ::= llaveizq llaveder {:RESULT=new Bloque();:}
+        | llaveizq L_INSTRUCCIONES:a llaveder {:RESULT=new Bloque(a);:}
+;
 
 DECLARACION ::= 
         T:a id:b igual E:c {: RESULT = new Declaracion(a,b,c,bleft, bright); :}
         | T:a id:b {: RESULT=new Declaracion(a,b,bleft, bright); :}
         
         
+;
+
+L_CONDICIONES ::= 
+        L_CONDICIONES:a relse rif parizquierdo E:b parderecho BLOQUE:c {:RESULT=a; RESULT.add(new Condiciones(b,c));:}
+        |rif parizquierdo E:a parderecho BLOQUE:b {:RESULT=new LinkedList<>(); RESULT.add(new Condiciones(a,b));:}
 ;
 
 ASIGNACION ::= 
