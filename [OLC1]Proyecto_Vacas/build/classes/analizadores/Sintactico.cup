@@ -17,7 +17,8 @@ import arbol.Logicas.*;
 import arbol.Comparativas.*;
 import arbol.Sentencias.*;
 import java.util.LinkedList;
-
+import javafx.scene.text.Text;
+import GUI.EditorController;
 
 
 parser code 
@@ -30,6 +31,8 @@ parser code
      * Método al que se llama automáticamente ante algún error sintactico.
      **/ 
     public void syntax_error(Symbol s){ 
+            Text texto = new Text("Error Sintáctico en la Línea " + (s.left) +" Columna "+s.right+ ". No se esperaba este componente: " +s.value+".\n");
+            EditorController.imprimir(texto);
             System.err.println("Error Sintáctico en la Línea " + (s.left) +" Columna "+s.right+ ". No se esperaba este componente: " +s.value+".");
 
             //Interfaz.lista_errores.add(new CError("Sintáctico", "No se esperaba este componente '" + s.value + "'", s.left, s.right));
@@ -39,6 +42,8 @@ parser code
      * Método al que se llama en el momento en que ya no es posible una recuperación de errores.
      **/ 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
+            Text texto = new Text("Error síntactico irrecuperable en la Línea " + (s.left)+ " Columna "+s.right+". Componente " + s.value + " no reconocido. \n");
+            EditorController.imprimir(texto);
             System.err.println("Error síntactico irrecuperable en la Línea " + (s.left)+ " Columna "+s.right+". Componente " + s.value + " no reconocido."); 
     }  
 :} 

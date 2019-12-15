@@ -7,6 +7,8 @@ package arbol.instrucciones;
 
 import arbol.*;
 import arbol.entorno.*;
+import GUI.EditorController;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -89,8 +91,10 @@ public class Asignacion extends Instruccion{
 
             //Si llega aquí el tipo de dato que se le quiere asignar a la variable es incorrecto
             System.out.println("El tipo de dato que se le quiere asignar a la variable '" + id + "' es incorrecto. " + sim.tipo.tipo + " = " + resultado.tipo.tipo + ". Línea: " + linea + " Columna: " + columna);
-
-        } //Si la variable NO existe ya se marcó el error
+            Text texto = new Text("El tipo de dato que se le quiere asignar a la variable '" + id + "' es incorrecto. " + sim.tipo.tipo + " = " + resultado.tipo.tipo + ". Línea: " + linea + " Columna: " + columna);
+            EditorController.imprimir(texto);
+                } 
+//Si la variable NO existe ya se marcó el error
         return null;
     }
 }

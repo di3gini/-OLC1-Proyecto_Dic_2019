@@ -8,6 +8,8 @@ package arbol.instrucciones;
 import arbol.Expresion;
 import arbol.*;
 import arbol.entorno.*;
+import GUI.EditorController;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -97,6 +99,8 @@ public class Declaracion extends Instruccion {
 
             //Si llega aquí es porque hubo error de tipos
 //            proyecto1.Interfaz.lista_errores.add(new CError("Semántico", "El tipo de dato que se le quiere asignar a la variable '" + id + "' es incorrecto. " + tipo.tipo + " = " + resultado.tipo.tipo, linea, columna));
+            Text texto = new Text("Error Semántico: " + "El tipo de dato que se le quiere asignar a la variable '" + id + "' es incorrecto. " + tipo.tipo + " = " + resultado.tipo.tipo + ". Línea: " + linea + " Columna: " + columna);
+            EditorController.imprimir(texto);
             System.out.println("Error Semántico: " + "El tipo de dato que se le quiere asignar a la variable '" + id + "' es incorrecto. " + tipo.tipo + " = " + resultado.tipo.tipo + ". Línea: " + linea + " Columna: " + columna);
         } else { //Si no se le asignó valor a la variable le pongo uno por defecto
             switch (tipo.tipo) {

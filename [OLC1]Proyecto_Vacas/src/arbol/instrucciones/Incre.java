@@ -5,12 +5,14 @@
  */
 package arbol.instrucciones;
 
+import GUI.EditorController;
 import arbol.Expresion;
 import arbol.Instruccion;
 import arbol.entorno.Entorno;
 import arbol.entorno.Simbolo;
 import arbol.entorno.Tipo;
 import arbol.expresiones.Literal;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -43,6 +45,8 @@ public class Incre extends Instruccion {
                     sim.valor = Double.parseDouble(sim.valor.toString())+ 1;
                     return null;
             }
+            Text texto = new Text("La variable '" + id + "' no existe. Línea: " + linea + " Columna: " + columna);
+            EditorController.imprimir(texto);
             System.out.println("La variable '" + id + "' no existe. Línea: " + linea + " Columna: " + columna);
         }
         return null;
