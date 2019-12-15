@@ -33,8 +33,6 @@ public class Bloque extends Instruccion {
         if(!vacio){
             for(Instruccion instrucciones: this.instrucciones){
                 regresar=instrucciones.ejecutar(ent);
-                return regresar;
-
             }
         }
         return null;

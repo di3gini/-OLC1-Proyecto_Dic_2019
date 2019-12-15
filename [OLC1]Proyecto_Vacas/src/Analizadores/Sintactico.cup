@@ -59,10 +59,12 @@ terminal umenos; //Para manejar el - E
 non terminal INICIO;
 non terminal LinkedList<Instruccion> L_INSTRUCCIONES;
 non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT, SENTENCIA_IF;
+non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE;
 non terminal LinkedList<Condiciones> L_CONDICIONES;
-non terminal Bloque BLOQUE;
+non terminal LinkedList<Bloque>L_BLOQUE;
+non terminal Bloque BLOQUE, BLOQUE_SWITCH;
 non terminal Expresion E;
-non terminal Expresion OP_COMPA;
+non terminal Expresion OP_COMPA, OP_LOGICA;
 non terminal Tipo T;
 
 
@@ -111,12 +113,39 @@ INSTRUCCION ::= DECLARACION:a puntoycoma {: RESULT = a; :}
             | GRAFICAR_DOT:a puntoycoma {: RESULT = a;:}
             | GRAFICAR_ENT:a puntoycoma {: RESULT = a;:}
             | SENTENCIA_IF:a {:RESULT=a;:}
+            | SENTENCIA_WHILE:a {:RESULT=a;:}
+            | SENTENCIA_DO_WHILE:a {:RESULT=a;:}
 ;
 
 SENTENCIA_IF ::= L_CONDICIONES:a relse BLOQUE:b {:RESULT=new IF(a,b);:}
                 |L_CONDICIONES:a {:RESULT=new IF(a);:}
 ;
 
+SENTENCIA_WHILE ::= rwhile parizquierdo E:a parderecho BLOQUE:b {:RESULT=new While(a,b);:}
+;
+
+SENTENCIA_DO_WHILE::= 
+        rdo BLOQUE:b rwhile parizquierdo E:a parderecho puntoycoma {:RESULT=new DoWhile(a,b);:}
+;
+
+/*SENTENCIA_SWITCH ::=
+       rswitch parizquierdo id:a parderecho llaveizq CASOS SWITCH_DEFAULT llaveder {::}
+;
+
+CASOS ::=
+        CASOS CASO {::}
+        |CASO {::}
+;
+
+CASO ::= rcase E:a dospuntos BLOQUE_SWITCH:a {::}
+;
+
+SWITCH_DEFAULT ::= rdefault dos puntos BLOQUE_SWITCH:a {::}
+;
+
+BLOQUE_SWITCH ::= {:RESULT=new Bloque();:}
+        | L_INSTRUCCIONES:a {:RESULT=new Bloque(a);:}
+*/
 BLOQUE ::= llaveizq llaveder {:RESULT=new Bloque();:}
         | llaveizq L_INSTRUCCIONES:a llaveder {:RESULT=new Bloque(a);:}
 ;
@@ -190,22 +219,34 @@ E ::=
 
         | id:a masmas {: RESULT= new incremento(aleft, aright, a);:}
         | id:a menosmenos {: RESULT = new decremento(aleft, aright, a); :}
-        
+
         | E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}
         | E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
         | E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
         | E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
         | E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
         | E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}
-
-
+        
         | E:a ror E:b {:RESULT = new OpOr(aleft, aright, a, b);:}
         | E:a rand E:b {:RESULT = new OpAnd(aleft, aright, a, b);:}
         | E:a rxor E:b {:RESULT = new OpXor(aleft, aright, a, b);:}
         | rnot E:a {:RESULT = new OpNot(aleft, aright, a);:}
-       
-        
-        
+;
+
+OP_COMPA ::=
+        | E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}
+        | E:a menorque E:b {: RESULT = new Menor(aleft, aright, a, b);:}
+        | E:a mayorigualque E:b {: RESULT = new MayorIgual(aleft, aright, a, b);:}
+        | E:a menorigualque E:b {: RESULT = new MenorIgual(aleft, aright, a, b);:}
+        | E:a igualigual E:b {: RESULT = new Igual(aleft, aright, a, b);:}
+        | E:a diferenteque E:b {: RESULT = new Diferente(aleft, aright, a, b);:}
+;
+
+OP_LOGICA ::=
+        | E:a ror E:b {:RESULT = new OpOr(aleft, aright, a, b);:}
+        | E:a rand E:b {:RESULT = new OpAnd(aleft, aright, a, b);:}
+        | E:a rxor E:b {:RESULT = new OpXor(aleft, aright, a, b);:}
+        | rnot E:a {:RESULT = new OpNot(aleft, aright, a);:}
 
 ;
 
