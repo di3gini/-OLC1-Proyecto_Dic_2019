@@ -15,10 +15,12 @@ import arbol.entorno.*;
 public class AST {
     LinkedList<Instruccion> lista_instrucciones; // Lista de instrucciones
     Entorno tablaGlobal; //Tabla de simbolos global del archivo;
+    public static LinkedList<Entorno> lista_entornos;
     
     public AST(LinkedList<Instruccion> lista_instrucciones){
         this.lista_instrucciones = lista_instrucciones;
         tablaGlobal = new Entorno(null);
+        //lista_entornos.add(tablaGlobal);
     }
     
     public void Ejecutar(){

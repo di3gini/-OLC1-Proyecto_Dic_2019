@@ -59,7 +59,7 @@ terminal umenos; //Para manejar el - E
 non terminal INICIO;
 non terminal LinkedList<Instruccion> L_INSTRUCCIONES;
 non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT, SENTENCIA_IF;
-non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE;
+non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE, SENTENCIA_IMPORT;
 non terminal LinkedList<Condiciones> L_CONDICIONES;
 non terminal LinkedList<Bloque>L_BLOQUE;
 non terminal Bloque BLOQUE, BLOQUE_SWITCH;
@@ -115,6 +115,7 @@ INSTRUCCION ::= DECLARACION:a puntoycoma {: RESULT = a; :}
             | SENTENCIA_IF:a {:RESULT=a;:}
             | SENTENCIA_WHILE:a {:RESULT=a;:}
             | SENTENCIA_DO_WHILE:a {:RESULT=a;:}
+            | SENTENCIA_IMPORT:a {:RESULT=a;:}
 ;
 
 SENTENCIA_IF ::= L_CONDICIONES:a relse BLOQUE:b {:RESULT=new IF(a,b);:}
@@ -128,8 +129,12 @@ SENTENCIA_DO_WHILE::=
         rdo BLOQUE:b rwhile parizquierdo E:a parderecho puntoycoma {:RESULT=new DoWhile(a,b);:}
 ;
 
+SENTENCIA_IMPORT ::=
+
+        rimport parizquierdo E:a parderecho puntoycoma {:RESULT=new Import(aleft, a);:}
+;
 /*SENTENCIA_SWITCH ::=
-       rswitch parizquierdo id:a parderecho llaveizq CASOS SWITCH_DEFAULT llaveder {::}
+       rswitch parizquierdo E:a parderecho llaveizq CASOS SWITCH_DEFAULT llaveder {:RESULT = new Switch(a,b,c);:}
 ;
 
 CASOS ::=
@@ -146,6 +151,7 @@ SWITCH_DEFAULT ::= rdefault dos puntos BLOQUE_SWITCH:a {::}
 BLOQUE_SWITCH ::= {:RESULT=new Bloque();:}
         | L_INSTRUCCIONES:a {:RESULT=new Bloque(a);:}
 */
+
 BLOQUE ::= llaveizq llaveder {:RESULT=new Bloque();:}
         | llaveizq L_INSTRUCCIONES:a llaveder {:RESULT=new Bloque(a);:}
 ;
