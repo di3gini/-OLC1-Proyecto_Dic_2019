@@ -20,7 +20,7 @@ import java.util.List;
 public class EditorController {
 
     
-
+    public static AST arbol = null;
     
     public static List<Text> lista_consola = new ArrayList<Text>();
     @FXML
@@ -175,7 +175,7 @@ public class EditorController {
     }
     
         @FXML public void crearNuevo(ActionEvent event){
-        String body = tabEditorContainer.getSelectionModel().getSelectedItem().getText();
+        String body = "";
         String ruta = "";
         String nombre = "";
         CTab current = ((CTab)tabEditorContainer.getSelectionModel().getSelectedItem());
@@ -235,15 +235,14 @@ public class EditorController {
     private void interpretar(String path) {
         analizadores.Sintactico pars;
 //        Instruccion bloque;
-        AST arbol = null;
+        
         try {
             Reader targetReader = new StringReader(new String(Files.readAllBytes(Paths.get(path)), "UTF-8"));
             analizadores.Lexico scan = new analizadores.Lexico(targetReader);
             pars = new analizadores.Sintactico(scan);
             pars.parse();
             arbol = pars.AST;
-
-
+            
 
         } catch (Exception ex) {
             System.out.println(ex);

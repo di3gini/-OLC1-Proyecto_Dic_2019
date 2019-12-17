@@ -17,18 +17,29 @@ import arbol.instrucciones.Bloque;
 public class Caso extends Instruccion{
     public Expresion comparar;
     public Bloque bloque;
-    public Expresion valor;
+    public Boolean Default = false;
+    public Object regresar;
     
-    public Caso(Expresion comparar, Bloque bloque, Expresion valor){
+    public Caso(Bloque bloque, int linea, int columna){
+       
+        this.bloque = bloque;
+        this.linea = linea;
+        this.columna = columna;
+        this.Default = true;
+        
+    }
+    
+    public Caso(Expresion comparar,Bloque b,int linea, int columna){
         this.comparar = comparar;
         this.bloque = bloque;
-        this.valor = valor;
+        this.linea = linea;
+        this.columna = columna;
     }
     
     @Override
     public Instruccion ejecutar(Entorno ent){
         
-
+        regresar = bloque.ejecutar(ent);
         
         return null;
     }

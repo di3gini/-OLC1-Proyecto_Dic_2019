@@ -59,13 +59,15 @@ terminal umenos; //Para manejar el - E
 non terminal INICIO;
 non terminal LinkedList<Instruccion> L_INSTRUCCIONES;
 non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENTO, DECREMENTO, GRAFICAR_DOT, GRAFICAR_ENT, SENTENCIA_IF;
-non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE, SENTENCIA_IMPORT;
+non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE, SENTENCIA_IMPORT, SENTENCIA_BREAK;
 non terminal LinkedList<Condiciones> L_CONDICIONES;
 non terminal LinkedList<Bloque>L_BLOQUE;
 non terminal Bloque BLOQUE, BLOQUE_SWITCH;
 non terminal Expresion E;
 non terminal Expresion OP_COMPA, OP_LOGICA;
 non terminal Tipo T;
+non terminal Caso CASO;
+non terminal LinkedList<Caso> CASOS;
 
 
 //Operaciones numericas
@@ -116,8 +118,13 @@ INSTRUCCION ::= DECLARACION:a puntoycoma {: RESULT = a; :}
             | SENTENCIA_WHILE:a {:RESULT=a;:}
             | SENTENCIA_DO_WHILE:a {:RESULT=a;:}
             | SENTENCIA_IMPORT:a {:RESULT=a;:}
+            | SENTENCIA_SWITCH:a {:RESULT=a;:}
+            | SENTENCIA_BREAK:a{:RESULT=a;:}
 ;
 
+
+SENTENCIA_BREAK::= rbreak puntoycoma {:RESULT=new Break();:}
+;
 SENTENCIA_IF ::= L_CONDICIONES:a relse BLOQUE:b {:RESULT=new IF(a,b);:}
                 |L_CONDICIONES:a {:RESULT=new IF(a);:}
 ;
@@ -133,24 +140,19 @@ SENTENCIA_IMPORT ::=
 
         rimport parizquierdo E:a parderecho puntoycoma {:RESULT=new Import(aleft, a);:}
 ;
-/*SENTENCIA_SWITCH ::=
-       rswitch parizquierdo E:a parderecho llaveizq CASOS SWITCH_DEFAULT llaveder {:RESULT = new Switch(a,b,c);:}
+SENTENCIA_SWITCH::= rswitch parizquierdo E:a parderecho llaveizq CASOS:b llaveder{: RESULT= new Switch(a,b,aleft,bleft); :}
+        ;
+
+CASOS::= CASOS:a CASO:b {: a.add(b); RESULT=a; :}
+    | CASO:a {: LinkedList<Caso>lst = new LinkedList<>(); lst.add(a); RESULT = lst; :}
+    ;
+
+CASO::= rcase E:a dospuntos BLOQUE_SWITCH:b {: RESULT = new Caso(a,b,aleft,aright); :}
+    | rdefault dospuntos BLOQUE_SWITCH:a {: RESULT = new Caso(a,aleft,aright); :}
 ;
 
-CASOS ::=
-        CASOS CASO {::}
-        |CASO {::}
+BLOQUE_SWITCH ::= L_INSTRUCCIONES:a {:RESULT=new Bloque(a);:}
 ;
-
-CASO ::= rcase E:a dospuntos BLOQUE_SWITCH:a {::}
-;
-
-SWITCH_DEFAULT ::= rdefault dos puntos BLOQUE_SWITCH:a {::}
-;
-
-BLOQUE_SWITCH ::= {:RESULT=new Bloque();:}
-        | L_INSTRUCCIONES:a {:RESULT=new Bloque(a);:}
-*/
 
 BLOQUE ::= llaveizq llaveder {:RESULT=new Bloque();:}
         | llaveizq L_INSTRUCCIONES:a llaveder {:RESULT=new Bloque(a);:}

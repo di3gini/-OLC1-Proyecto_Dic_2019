@@ -18,6 +18,9 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.text.Text;
 
 
@@ -36,21 +39,33 @@ public class Import extends Instruccion{
     
     @Override
     public Instruccion ejecutar(Entorno ent){
+        System.out.print("porque putas!");
         if(ruta.tipo.tipo == Tipo.EnumTipo.cadena){
             try{
+                analizadores.Sintactico pars;
                 entorno = new Entorno(ent);
+                AST nuevo = null;
+                
                 AST.lista_entornos.add(entorno);
                 String ubicacion = ruta.valor.toString();
+  
+            
                 
-                    File file = new File(ubicacion); 
-                    BufferedReader br = new BufferedReader(new FileReader(file)); 
+                Reader targetReader = new StringReader(new String(Files.readAllBytes(Paths.get(ubicacion)), "UTF-8"));
+                analizadores.Lexico scan = new analizadores.Lexico(targetReader);
+                pars = new analizadores.Sintactico(scan);
+                pars.parse();
+                nuevo = pars.AST;
+                
+                nuevo.Ejecutar(entorno);
+                
+                AST.tablaGlobal.tabla.putAll(entorno.tabla);
+                
 
-                    String st; 
-                    while ((st = br.readLine()) != null) 
-                      System.out.println(st);
-                    
-                    
+
+                
             }
+                            
             catch(Exception e){
                 Text texto = new Text("No se puede importar el archivo: " + ruta.valor.toString() + ". Error en fila: "+ linea);
                 EditorController.imprimir(texto);
