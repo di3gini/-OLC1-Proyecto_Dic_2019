@@ -43,7 +43,7 @@ public class Import extends Instruccion{
         if(ruta.tipo.tipo == Tipo.EnumTipo.cadena){
             try{
                 analizadores.Sintactico pars;
-                entorno = new Entorno(ent);
+                entorno = new Entorno(ent, "import");
                 AST nuevo = null;
                 
                 AST.lista_entornos.add(entorno);

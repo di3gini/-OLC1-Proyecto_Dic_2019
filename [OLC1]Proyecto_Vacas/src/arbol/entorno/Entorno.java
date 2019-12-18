@@ -18,10 +18,12 @@ import GUI.EditorController;
 public class Entorno {
     public Entorno anterior;
     public HashMap<String, Simbolo> tabla;
+    public String nombre;
     
-    public Entorno(Entorno anterior){
+    public Entorno(Entorno anterior, String nombre){
         this.anterior = anterior;
         this.tabla = new HashMap<>();
+        this.nombre = nombre;
     }
     
     public void insertar(String nombre, Simbolo sim, int linea, int columna, String cadenaerror){

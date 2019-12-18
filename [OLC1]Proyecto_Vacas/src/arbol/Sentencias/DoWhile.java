@@ -32,7 +32,7 @@ public class DoWhile extends Instruccion{
         if (this.resultado.tipo.tipo.equals(Tipo.EnumTipo.booleano)) {
 
             do{
-                Entorno nuevoentorno = new Entorno(ent);
+                Entorno nuevoentorno = new Entorno(ent, "Do-While");
                 bloque.ejecutar(nuevoentorno);
                 resultado=valor.getValor(ent);
             } while (Boolean.parseBoolean(this.resultado.valor.toString()) == true);

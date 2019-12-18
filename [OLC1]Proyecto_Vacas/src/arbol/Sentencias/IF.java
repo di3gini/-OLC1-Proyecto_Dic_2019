@@ -40,7 +40,7 @@ public class IF extends Instruccion{
 
         }
         if (bloqueelse != null) {
-            Entorno nuevo_entorno = new Entorno(ent);
+            Entorno nuevo_entorno = new Entorno(ent, "If");
             bloqueelse.ejecutar(nuevo_entorno);
 
         }

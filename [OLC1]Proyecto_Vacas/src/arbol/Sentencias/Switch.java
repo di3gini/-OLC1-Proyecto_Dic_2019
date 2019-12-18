@@ -41,7 +41,7 @@ public class Switch extends Instruccion{
             }
         }
         
-        Entorno local = new Entorno(ent);
+        Entorno local = new Entorno(ent, "switch");
         Object val_comparar = this.comparar.getValor(local).valor.toString();
         
         boolean tiene_break = true;

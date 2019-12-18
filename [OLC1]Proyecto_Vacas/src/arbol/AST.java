@@ -19,7 +19,7 @@ public class AST {
     
     public AST(LinkedList<Instruccion> lista_instrucciones){
         this.lista_instrucciones = lista_instrucciones;
-        tablaGlobal = new Entorno(null);
+        tablaGlobal = new Entorno(null,"Global");
         lista_entornos = new LinkedList<>();
         lista_entornos.add(tablaGlobal);
     }

@@ -33,13 +33,11 @@ public class Condiciones extends Instruccion{
     public Object ejecutar(Entorno ent) {
         this.ejecutado=false;
         resultado = valor.getValor(ent);
-        System.out.println("*************************************************");
-        System.out.println(resultado.valor.toString());
-        System.out.println("*************************************************");
+
         if (this.resultado.tipo.tipo.equals(Tipo.EnumTipo.booleano)) {
             if (Boolean.parseBoolean(this.resultado.valor.toString()) == true) {
                 this.ejecutado = true;
-                Entorno nuevoentorno = new Entorno(ent);
+                Entorno nuevoentorno = new Entorno(ent, "Condicion");
                 bloque.ejecutar(nuevoentorno);
             }
 

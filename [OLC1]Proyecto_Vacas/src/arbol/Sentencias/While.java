@@ -30,7 +30,7 @@ public class While extends Instruccion{
         resultado = valor.getValor(ent);
         if (this.resultado.tipo.tipo.equals(Tipo.EnumTipo.booleano)) {
             while (Boolean.parseBoolean(this.resultado.valor.toString()) == true) {
-                Entorno nuevoentorno = new Entorno(ent);
+                Entorno nuevoentorno = new Entorno(ent, "while");
                 bloque.ejecutar(nuevoentorno);
                 resultado=valor.getValor(ent);
             }
