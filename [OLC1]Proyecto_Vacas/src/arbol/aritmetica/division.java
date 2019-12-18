@@ -5,10 +5,12 @@
  */
 package arbol.aritmetica;
 
+import GUI.EditorController;
 import arbol.Expresion;
 import arbol.entorno.Entorno;
 import arbol.entorno.Tipo;
 import arbol.expresiones.Literal;
+import olc1.proyecto_vacas.CError;
 
 /**
  *
@@ -21,7 +23,7 @@ public class division extends Expresion {
     Expresion hijo2;
     
     public division (int fila, int columna, Expresion hijo1, Expresion hijo2){
-        this.operacion = "*";
+        this.operacion = "/";
         this.linea = fila;
         this.columna = columna;
         this.hijo1 = hijo1;
@@ -29,6 +31,9 @@ public class division extends Expresion {
     }
     @Override
     public Expresion getValor(Entorno ent){
+        try{
+            
+        
         Expresion res1 = hijo1.getValor(ent);
         Expresion res2 = hijo2.getValor(ent);
         
@@ -62,7 +67,11 @@ public class division extends Expresion {
                         return new Literal(new Tipo(Tipo.EnumTipo.entero), (int) res1.valor.toString().charAt(0) / (int) res2.valor.toString().charAt(0));
                 }
         }
-        
+        }
+        catch(Exception ex){
+            
+               EditorController.lista_errores.add(new CError("Ejecución", "Problema de division",linea,columna));
+        }
         return null;
     }
 }

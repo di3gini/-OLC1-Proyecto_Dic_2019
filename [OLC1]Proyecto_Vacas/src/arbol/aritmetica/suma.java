@@ -5,10 +5,12 @@
  */
 package arbol.aritmetica;
 
+import GUI.EditorController;
 import arbol.Expresion;
 import arbol.entorno.Entorno;
 import arbol.entorno.Tipo;
 import arbol.expresiones.Literal;
+import olc1.proyecto_vacas.CError;
 
 /**
  *
@@ -69,6 +71,9 @@ public class suma extends Expresion {
                 }
             case cadena:
                 return new Literal(new Tipo(Tipo.EnumTipo.cadena), res1.valor.toString()+res2.valor.toString());
+            default:
+                 EditorController.lista_errores.add(new CError("Ejecución", "Problema en expresión de suma",linea,columna));
+                 
                 
         }
         
