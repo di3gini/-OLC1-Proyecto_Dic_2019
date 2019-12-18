@@ -1,1 +1,1 @@
-digraph G{while0->Condicion1->Global;}
+digraph G{Global;}

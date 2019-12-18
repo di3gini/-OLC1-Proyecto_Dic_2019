@@ -10,6 +10,9 @@ import arbol.entorno.Entorno;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,11 +46,35 @@ public class GrafEntornos extends Instruccion{
         cadena = cadena + ent.nombre+";}";
         System.out.println(cadena);
         
+        {
+                                    FileWriter fichero = null;
+                        PrintWriter pw = null;
+                            try {
+                                fichero = new FileWriter("C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos\\grafEntornos.txt");
+                                pw = new PrintWriter(fichero);
+                                pw.println(cadena);
+                                fichero.close();
+                                
+                                graficarfichero(); 
+                            } catch (IOException ex) {
+                                Logger.getLogger(GrafDot.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                             try {
+                                 
+
+                                
+                            } catch (Exception ex) {
+                                Logger.getLogger(GrafDot.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
         
-            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+        return null;
+    }
+    private void graficarfichero(){
+        String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 
             String fileInputPath = "C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos\\grafEntornos.txt";
-            String fileOutputPath = "C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos";
+            String fileOutputPath = "C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos\\entornos.jpg";
 
             String tParam = "-Tjpg";
             String tOParam = "-o";
@@ -61,14 +88,10 @@ public class GrafEntornos extends Instruccion{
 
             Runtime rt = Runtime.getRuntime();
             try{
-                rt.exec("dot" + cmd);
+                rt.exec(cmd);
             }
             catch (IOException exc){
                 System.out.println(exc);
             }
-            
-
-        
-        return null;
     }
 }

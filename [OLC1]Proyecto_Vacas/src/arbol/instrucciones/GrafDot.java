@@ -50,7 +50,10 @@ public class GrafDot extends Instruccion{
                                 Logger.getLogger(GrafDot.class.getName()).log(Level.SEVERE, null, ex);
                             }*/
                              try {
+                                 
+                                 System.out.println(val1.valor.toString());
                                 graficarfichero(val1.valor.toString());
+                                
                             } catch (Exception ex) {
                                 Logger.getLogger(GrafDot.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -64,7 +67,7 @@ public class GrafDot extends Instruccion{
     }
 
     public void graficarfichero(String toString) {
-                    String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+                    String dotPath = "dot";
 
             String fileInputPath = "C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos\\archivoDot.txt";
             String fileOutputPath = toString;
@@ -73,15 +76,17 @@ public class GrafDot extends Instruccion{
             String tOParam = "-o";
 
             String[] cmd = new String[5];
-            cmd[0] = dotPath;
-            cmd[1] = tParam;
-            cmd[2] = fileInputPath;
-            cmd[3] = tOParam;
-            cmd[4] = fileOutputPath;
-
+            cmd[0] = dotPath+" ";
+            cmd[1] = tParam+" ";
+            cmd[2] = fileInputPath+" ";
+            cmd[3] = tOParam+" ";
+            cmd[4] = fileOutputPath+" ";
+            
+            String cadena = cmd[0] + cmd[1] + cmd[2] + cmd[3]+cmd[4];
             Runtime rt = Runtime.getRuntime();
             try{
-                rt.exec("dot" + cmd);
+                rt.exec(cadena);
+                System.out.println(cadena);
             }
             catch(Exception exc){
                 System.out.println(exc);

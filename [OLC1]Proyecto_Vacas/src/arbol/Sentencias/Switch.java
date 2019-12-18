@@ -54,7 +54,6 @@ public class Switch extends Instruccion{
                     
                     if (resul.valor.toString().equals(caso.valor.valor)) {
                         EditorController.pilaCiclo.push("CASE");
-                        System.out.println("puse comparar las variables del case y del switch");
                         Entorno nuevo = new Entorno(ent,"SWITCH");
                         retorno = caso.bloque.ejecutar(nuevo);
                         if (retorno != null) {
