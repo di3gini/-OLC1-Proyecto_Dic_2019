@@ -5,12 +5,14 @@
  */
 package arbol.Sentencias;
 
+import GUI.EditorController;
 import arbol.Expresion;
 import arbol.Instruccion;
 import arbol.entorno.Entorno;
 import arbol.entorno.Tipo;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import olc1.proyecto_vacas.CError;
 
 
 /**
@@ -18,53 +20,65 @@ import java.util.LinkedList;
  * @author di3go
  */
 public class Switch extends Instruccion{
-    Expresion comparar;
-    LinkedList<Caso> lstCasos;
-    
-    public Switch(Expresion comparar, LinkedList<Caso> lstCasos, int linea, int columna){
-        this.linea = linea;
-        this.columna = columna;
-        this.comparar = comparar;
-        this.lstCasos = lstCasos;
+    Expresion valor;
+    public Expresion resul;
+    LinkedList<Instruccion> listacondi;
+    LinkedList<Casos> listacondicas;
+    int linea, columna;
+    Caso caso;
+    Object retorno;
+    String tipo;
+//    public Switch(Expresion a, LinkedList<Instruccion> b, int aleft, int bleft) {
+//        this.valor=a;
+//        this.listacondi=b;
+//        this.lina=aleft;
+//        this.columna=bleft;
+//    }
+
+    public Switch(Expresion a, LinkedList<Casos> b, int aleft, int bleft) {
+        this.valor = a;
+        this.listacondicas = b;
+        this.linea = aleft;
+        this.columna = bleft;
     }
-    
-    
-    
+
     @Override
-    public Instruccion ejecutar(Entorno ent){
-        
-        Caso caso_default = null;
-        
-        for (Caso item : this.lstCasos) {
-            if (item.Default) {
-                caso_default = item;
-            }
-        }
-        
-        Entorno local = new Entorno(ent, "switch");
-        Object val_comparar = this.comparar.getValor(local).valor.toString();
-        
-        boolean tiene_break = true;
-        
-        for(Caso caso : lstCasos){
-            if(!caso.Default){
-                Object comparar2 = caso.comparar.getValor(local).valor.toString();
-                System.out.println(val_comparar.toString());
-                System.out.println(comparar2.toString());
-                if(comparar.tipo.tipo.equals(caso.comparar.tipo.tipo)){
-                    if(val_comparar.toString().equals(comparar2.toString())){
-                        caso.bloque.ejecutar(local);
-                        return null;
+    public Object ejecutar(Entorno ent) {
+     
+                try {
+            for (Casos instrucciones : listacondicas) {
+                this.resul = valor.getValor(ent);
+                caso = instrucciones.getCaso();
+
+                if (caso.getTipo().equals("Case")) {
+                    
+                    if (resul.valor.toString().equals(caso.valor.valor)) {
+                        EditorController.pilaCiclo.push("CASE");
+                        System.out.println("puse comparar las variables del case y del switch");
+                        Entorno nuevo = new Entorno(ent,"SWITCH");
+                        retorno = caso.bloque.ejecutar(nuevo);
+                        if (retorno != null) {
+                            return null;
+                        }else{
+                            EditorController.lista_errores.pop();
+                        }
+                    }
+                } else {
+                    if (caso.getTipo().equals("Default")) {
+                        Entorno nuevo = new Entorno(ent,"SWITCH");
+                        retorno = caso.bloque.ejecutar(nuevo);
+                        if (retorno != null) {
+                            return null;
+                        }
                     }
                 }
-                
             }
+        } catch (NullPointerException ex) {
+
         }
-        
-        if(caso_default != null){
-            caso_default.bloque.ejecutar(local);
-        }
-        
+
         return null;
+    
+        
     }
 }

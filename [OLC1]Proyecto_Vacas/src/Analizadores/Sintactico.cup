@@ -62,12 +62,13 @@ non terminal Instruccion INSTRUCCION,DECLARACION,ASIGNACION, IMPRIMIR, INCREMENT
 non terminal Instruccion SENTENCIA_WHILE, SENTENCIA_SWITCH, SENTENCIA_DO_WHILE, SENTENCIA_IMPORT, SENTENCIA_BREAK;
 non terminal LinkedList<Condiciones> L_CONDICIONES;
 non terminal LinkedList<Bloque>L_BLOQUE;
-non terminal Bloque BLOQUE, BLOQUE_SWITCH;
+non terminal Bloque BLOQUE;
+non terminal BloqueSwitch BLOQUE_SWITCH;
 non terminal Expresion E;
 non terminal Expresion OP_COMPA, OP_LOGICA;
 non terminal Tipo T;
 non terminal Caso CASO;
-non terminal LinkedList<Caso> CASOS;
+non terminal LinkedList<Casos> CASOS;
 
 
 //Operaciones numericas
@@ -143,15 +144,16 @@ SENTENCIA_IMPORT ::=
 SENTENCIA_SWITCH::= rswitch parizquierdo E:a parderecho llaveizq CASOS:b llaveder{: RESULT= new Switch(a,b,aleft,bleft); :}
         ;
 
-CASOS::= CASOS:a CASO:b {: a.add(b); RESULT=a; :}
-    | CASO:a {: LinkedList<Caso>lst = new LinkedList<>(); lst.add(a); RESULT = lst; :}
+CASOS::= CASOS:a CASO:b {: RESULT=a; RESULT.add(new Casos(b));:}
+    | CASO:a {: RESULT=new LinkedList<>(); RESULT.add(new Casos(a)); :}
     ;
 
-CASO::= rcase E:a dospuntos BLOQUE_SWITCH:b {: RESULT = new Caso(a,b,aleft,aright); :}
-    | rdefault dospuntos BLOQUE_SWITCH:a {: RESULT = new Caso(a,aleft,aright); :}
+CASO::= rcase E:b dospuntos BLOQUE_SWITCH:c {: RESULT=new Caso(b,c,bleft,bright);:}
+    | rdefault dospuntos BLOQUE_SWITCH:a  {: RESULT=new Caso(a,aleft,aright); :}
 ;
 
-BLOQUE_SWITCH ::= L_INSTRUCCIONES:a {:RESULT=new Bloque(a);:}
+BLOQUE_SWITCH ::= {:RESULT=new BloqueSwitch();:}
+        | L_INSTRUCCIONES:a {:RESULT=new BloqueSwitch(a);:}
 ;
 
 BLOQUE ::= llaveizq llaveder {:RESULT=new Bloque();:}

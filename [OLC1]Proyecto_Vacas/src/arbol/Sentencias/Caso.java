@@ -14,33 +14,73 @@ import arbol.instrucciones.Bloque;
  *
  * @author di3go
  */
-public class Caso extends Instruccion{
-    public Expresion comparar;
-    public Bloque bloque;
-    public Boolean Default = false;
-    public Object regresar;
+public class Caso{
+Switch val;
+    Expresion switchval;
+    public Expresion resul;
+    Expresion valor;
+    BloqueSwitch bloque;
+    int linea, columna;
+    Object retorno;
+    String tipo;
     
-    public Caso(Bloque bloque, int linea, int columna){
-       
-        this.bloque = bloque;
-        this.linea = linea;
-        this.columna = columna;
-        this.Default = true;
-        
+
+    public Caso(Expresion b, BloqueSwitch c, int bleft, int bright) {
+        this.valor = b;
+        this.bloque = c;
+        this.linea = bleft;
+        this.columna = bright;
+        this.tipo="Case";
     }
-    
-    public Caso(Expresion comparar,Bloque b,int linea, int columna){
-        this.comparar = comparar;
+
+    public Caso(BloqueSwitch a, int aleft, int aright) {
+        this.bloque = a;
+        this.linea = aleft;
+        this.columna = aright;
+        this.tipo="Default";
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Expresion getValor() {
+        return valor;
+    }
+
+    public void setValor(Expresion valor) {
+        this.valor = valor;
+    }
+
+    public BloqueSwitch getBloque() {
+        return bloque;
+    }
+
+    public void setBloque(BloqueSwitch bloque) {
         this.bloque = bloque;
+    }
+
+    public int getLinea() {
+        return linea;
+    }
+
+    public void setLinea(int linea) {
         this.linea = linea;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    public void setColumna(int columna) {
         this.columna = columna;
     }
-    
-    @Override
-    public Instruccion ejecutar(Entorno ent){
-        
-        regresar = bloque.ejecutar(ent);
-        
-        return null;
+
+    public enum EnumtipoCase{
+        Case, Defaul;
     }
 }

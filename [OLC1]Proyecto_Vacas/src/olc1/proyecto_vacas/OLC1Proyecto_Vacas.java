@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 import GUI.*;
 import java.io.IOException;
+import java.util.Stack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
@@ -34,7 +35,9 @@ public class OLC1Proyecto_Vacas extends Application {
     
     public static FXMLLoader fxmlLoader;
     public static Stage stage;
-     public static LinkedList<CError> lista_errores;
+    
+     
+     
     @Override
     public void start(Stage primaryStage) {
                         try {
@@ -54,7 +57,7 @@ public class OLC1Proyecto_Vacas extends Application {
      */
     public static void main(String[] args) {
         
-        lista_errores = new LinkedList<>();
+        //lista_errores = new LinkedList<>();
         //interpretar("C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[COMPI1]Proyecto_Vacas\\src\\Entradas\\entrada1.txt");
         
         launch(args);

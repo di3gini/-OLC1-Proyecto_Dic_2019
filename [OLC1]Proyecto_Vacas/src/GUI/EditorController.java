@@ -15,14 +15,19 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
+import olc1.proyecto_vacas.CError;
 
 public class EditorController {
 
     
     public static AST arbol = null;
-    
+    public static Stack<String> pilaCiclo = new Stack<>();
     public static List<Text> lista_consola = new ArrayList<Text>();
+    
+     public static LinkedList<CError> lista_errores;
     @FXML
     public TextFlow consoleText;
 

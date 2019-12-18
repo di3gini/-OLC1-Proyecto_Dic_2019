@@ -8,6 +8,11 @@ package arbol.instrucciones;
 import arbol.Expresion;
 import arbol.Instruccion;
 import arbol.entorno.Entorno;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +33,55 @@ public class GrafDot extends Instruccion{
             case cadena:
                 switch(val2.tipo.tipo){
                     case cadena:
-                        System.out.println("Graficar Dot");
+                        FileWriter fichero = null;
+                        PrintWriter pw = null;
+
+                        int cont = 0;
+
+                         {
+                            try {
+                                fichero = new FileWriter("C:\\Users\\di3go\\Documents\\NetBeansProjects\\-OLC1-Proyecto_Dic_2019\\[OLC1]Proyecto_Vacas\\src\\Entradas\\Graficos\\archivoDot.txt");
+                                pw = new PrintWriter(fichero);
+                                pw.println(val2.valor.toString());
+                                fichero.close();
+                                
+                                graficarfichero(val1.valor.toString());
+                            } catch (IOException ex) {
+                                Logger.getLogger(GrafDot.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                 }
         }
         
         return null;
+    }
+
+    private void graficarfichero(String toString) {
+                    String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "~/Entradas/Graficos/archivoDot.txt";
+            String fileOutputPath = toString;
+
+            String tParam = "-Tjpg";
+            String tOParam = "-o";
+
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+            try{
+                rt.exec("dot" + cmd);
+                System.out.println("dot"+cmd);
+            }
+            catch(Exception exc){
+                System.out.println(exc);
+            }
+            
+            
     }
     
 }

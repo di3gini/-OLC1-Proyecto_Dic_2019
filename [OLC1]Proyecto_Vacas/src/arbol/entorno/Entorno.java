@@ -28,7 +28,7 @@ public class Entorno {
     
     public void insertar(String nombre, Simbolo sim, int linea, int columna, String cadenaerror){
         if (tabla.containsKey(nombre)){
-            olc1.proyecto_vacas.OLC1Proyecto_Vacas.lista_errores.add(new CError("Semantico", cadenaerror,linea,columna));
+            EditorController.lista_errores.add(new CError("Semantico", cadenaerror,linea,columna));
             
             Text texto = new Text("Error Semántico: " + cadenaerror + " '" + nombre +"' ya existe. Línea: " + linea + ", Columna: " + columna);
             EditorController.imprimir(texto);
@@ -46,6 +46,7 @@ public class Entorno {
                 return sim;
             }
         }
+        EditorController.lista_errores.add(new CError("Semantico", "saber",linea,columna));
         Text texto = new Text("Error Semántico: " + cadena + " '" + nombre + "' Linea: " + linea + " Columna: " + columna);
         EditorController.imprimir(texto);
         System.out.println("Error Semántico: " + cadena + " '" + nombre + "' Linea: " + linea + " Columna: " + columna);
