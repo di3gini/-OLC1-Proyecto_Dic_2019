@@ -48,7 +48,7 @@ public class Diferente extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case caracter:
-                        if(Integer.parseInt(valor1.valor.toString()) != (int) valor2.valor.toString().charAt(0)){
+                        if((double)valor1.valor!= (double) valor2.valor.toString().charAt(0)){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{

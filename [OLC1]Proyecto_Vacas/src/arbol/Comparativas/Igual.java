@@ -30,6 +30,7 @@ public class Igual extends Expresion{
         Expresion valor2 = hijo2.getValor(ent);
         
         switch (valor1.tipo.tipo){
+            
             case entero:
                 switch (valor2.tipo.tipo){
                     case entero:

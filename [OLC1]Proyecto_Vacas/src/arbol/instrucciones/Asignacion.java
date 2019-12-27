@@ -69,7 +69,13 @@ public class Asignacion extends Instruccion{
                 case caracter:
                     switch (resultado.tipo.tipo) {
                         case caracter:
-                            sim.valor = resultado.valor;
+                            sim.valor =  resultado.valor;
+                            return null;
+                        case entero:
+                            sim.valor = (char) Double.parseDouble(resultado.valor.toString());
+                            return null;
+                        case doble:
+                            sim.valor = (char) Double.parseDouble(resultado.valor.toString());
                             return null;
                     }
                     break;

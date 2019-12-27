@@ -40,8 +40,10 @@ public class Decre extends Instruccion{
                     sim.valor = (Integer) (Integer.parseInt(sim.valor.toString()) - 1);
                     return null;
                 case doble:
-                    sim.valor = Double.parseDouble(sim.valor.toString()) - 1;
+                    sim.valor = Double.parseDouble(sim.valor.toString()) - 1;   
                     return null;
+                case caracter:
+                    sim.valor = (char) (int) sim.valor.toString().charAt(0) - 1;
             }
             Text texto = new Text("La variable '" + id + "' no existe. Línea: " + linea + " Columna: " + columna);
             EditorController.imprimir(texto);

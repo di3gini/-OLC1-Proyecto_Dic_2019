@@ -49,7 +49,7 @@ public class MenorIgual extends Expresion{
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), false);
                         }
                     case caracter:
-                        if(Integer.parseInt(valor1.valor.toString()) <= (int) valor2.valor.toString().charAt(0)){
+                        if((char)valor1.valor <= (char)valor2.valor ){
                             return new  Literal(new Tipo(Tipo.EnumTipo.booleano), true);
                         }
                         else{

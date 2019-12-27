@@ -76,6 +76,16 @@ public class Declaracion extends Instruccion {
                             simbolo = new Simbolo(tipo, resultado.valor);
                             ent.insertar(id, simbolo, linea, columna, "La variable");
                             return null;
+                        case entero:
+                            tipo.tipo = Tipo.EnumTipo.caracter;
+                            simbolo = new Simbolo(tipo, (char) resultado.valor);
+                            ent.insertar(id, simbolo, linea, columna, "La variable");
+                            return null;
+                        case doble:
+                            tipo.tipo = Tipo.EnumTipo.caracter;
+                            simbolo = new Simbolo(tipo, (char) resultado.valor);
+                            ent.insertar(id, simbolo, linea, columna, "La variable");
+                            return null;
                     }
                     break;
                 case booleano:

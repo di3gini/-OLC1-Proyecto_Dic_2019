@@ -34,10 +34,15 @@ public class suma extends Expresion {
         Expresion res1 = hijo1.getValor(ent);
         Expresion res2 = hijo2.getValor(ent);
         
+        try{
         switch(res1.tipo.tipo){
+            
             case entero:
+                res1.tipo.tipo = Tipo.EnumTipo.entero;
+                
                 switch(res2.tipo.tipo){
                     case entero:
+                        res2.tipo.tipo = Tipo.EnumTipo.entero;
                         return new  Literal(new Tipo(Tipo.EnumTipo.entero),Integer.parseInt(res1.valor.toString())+Integer.parseInt(res2.valor.toString()));
                     case doble:
                         return new Literal(new Tipo(Tipo.EnumTipo.doble),Double.parseDouble(res1.valor.toString())+Double.parseDouble(res2.valor.toString()));
@@ -71,10 +76,16 @@ public class suma extends Expresion {
                 }
             case cadena:
                 return new Literal(new Tipo(Tipo.EnumTipo.cadena), res1.valor.toString()+res2.valor.toString());
+            case booleano:
+                return new Literal(new Tipo(Tipo.EnumTipo.cadena), res1.valor.toString()+res2.valor.toString());
             default:
-                 EditorController.lista_errores.add(new CError("Ejecución", "Problema en expresión de suma",linea,columna));
+                 //EditorController.lista_errores.add(new CError("Ejecución", "Problema en expresión de suma",linea,columna));
                  
-                
+                 System.out.println("Linea: "+linea + " columna:" + columna);
+        }
+        }
+        catch(Exception ex){
+                             System.out.println("Linea: "+linea + " columna:" + columna);
         }
         
         return null;

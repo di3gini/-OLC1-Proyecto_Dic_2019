@@ -86,7 +86,7 @@ precedence left menorque,menorigualque,mayorque,mayorigualque,igualigual,diferen
 precedence left mas,menos;
 precedence left por,division,modulo;
 precedence left rpow;
-//precedence left masmas,menosmenos; //Así lo tenía antes
+precedence left masmas,menosmenos; //Así lo tenía antes
 
 precedence left punto; //Para los accesos
 
@@ -241,7 +241,12 @@ E ::=
         | E:a rand E:b {:RESULT = new OpAnd(aleft, aright, a, b);:}
         | E:a rxor E:b {:RESULT = new OpXor(aleft, aright, a, b);:}
         | rnot E:a {:RESULT = new OpNot(aleft, aright, a);:}
+        | parizquierdo E:a parderecho {:RESULT=a;:}
+        | umenos E:a {:RESULT = new Negativos(aleft, aright, a);:}
+        
 ;
+
+
 
 OP_COMPA ::=
         | E:a mayorque E:b {: RESULT = new Mayor(aleft, aright, a, b);:}

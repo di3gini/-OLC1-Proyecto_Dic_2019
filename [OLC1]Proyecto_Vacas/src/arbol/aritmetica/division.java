@@ -70,7 +70,8 @@ public class division extends Expresion {
         }
         catch(Exception ex){
             
-               EditorController.lista_errores.add(new CError("Ejecución", "Problema de division",linea,columna));
+               //EditorController.lista_errores.add(new CError("Ejecución", "Problema de division",linea,columna));
+               System.out.println("Linea: "+linea + " columna:" + columna);
         }
         return null;
     }

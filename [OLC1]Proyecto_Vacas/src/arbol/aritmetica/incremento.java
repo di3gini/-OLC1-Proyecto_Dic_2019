@@ -33,22 +33,31 @@ public class incremento extends Expresion {
         
         Simbolo sim=ent.buscar(id, linea, columna, "la variable");
         if (sim != null) { //Si la variable existe
-            Object temporal;
-
+            Object temporal = null;
+            Expresion regresar = null;
             switch(sim.tipo.tipo){
                 case entero:
-                    temporal = sim.valor;
-                    sim.valor = (Integer) (Integer.parseInt(sim.valor.toString()) + 1);
-                    return new Literal(new Tipo(Tipo.EnumTipo.entero),Integer.parseInt(temporal.toString()));
+                    temporal =  (int) sim.valor;
+                    sim.valor = (int) temporal + 1;
+                    sim.tipo.tipo = Tipo.EnumTipo.entero;
+                    regresar.valor = temporal;
+                    regresar.tipo.tipo = Tipo.EnumTipo.entero;
+                    //return new Literal(new Tipo(Tipo.EnumTipo.entero),(double) (int) temporal);
+                    return regresar;
+                   
                 case doble:
-                    temporal = sim.valor;
-                    sim.valor = Double.parseDouble(sim.valor.toString())+ 1;
-                    return new Literal(new Tipo(Tipo.EnumTipo.doble),Integer.parseInt(temporal.toString()));
+                    temporal = (double) sim.valor;
+                    regresar.valor = temporal;
+                    regresar.tipo.tipo = Tipo.EnumTipo.doble;
+                    sim.valor = (double) sim.valor + 1;
+                    sim.tipo.tipo = Tipo.EnumTipo.doble;
+                    //return new Literal(new Tipo(Tipo.EnumTipo.doble),(double) temporal);
+                    return regresar;
             }
-            System.out.println("La variable '" + id + "' no existe. Línea: " + linea + " Columna: " + columna);
+            
         }
         
-                
+            System.out.println("La variable '" + id + "' no existe. Línea: " + linea + " Columna: " + columna);    
         return null;
     }
 }
